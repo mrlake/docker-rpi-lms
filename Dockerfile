@@ -15,8 +15,8 @@ ENV PKG_VER 7.8.0
 
 # Install Logitech Media Server
 RUN apt-get update && apt-get install -y --force-yes \
-  avahi-daemon \
-  avahi-utils \
+  #avahi-daemon \
+  #avahi-utils \
   git \
   libao-dev \
   libcrypt-openssl-rsa-perl \
@@ -41,7 +41,7 @@ WORKDIR /tmp
 #RUN git clone --depth=1 https://github.com/njh/perl-net-sdp.git perl-net-sdp \
  # && git clone --depth=1 https://github.com/StuartUSA/shairport_plugin.git shairport_plugin
 
-WORKDIR /tmp/perl-net-sdp
+#WORKDIR /tmp/perl-net-sdp
 
 #Build Perl Net::SDP
 #RUN perl ./Build.PL \
@@ -63,7 +63,7 @@ RUN locale-gen $LANG
 # Copy supervisor.conf script
 ADD supervisor.conf /etc/supervisor.conf
 
-ADD avahi.sh /opt/avahi.sh
+#ADD avahi.sh /opt/avahi.sh
 
 # Fix avahi-daemon not working without dbus
 #RUN sed -i -e "s#\#enable-dbus=yes#enable-dbus=false#g" /etc/avahi/avahi-daemon.conf
@@ -90,7 +90,7 @@ EXPOSE 3483/udp
 #EXPOSE 631
 
 # Expose Avahi Discovery Port
-EXPOSE 5353/udp
+#EXPOSE 5353/udp
 
 # Run Program
 CMD ["supervisord", "-c", "/etc/supervisor.conf", "-n"]
