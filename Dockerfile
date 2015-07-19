@@ -38,21 +38,21 @@ RUN wget -O /tmp/${PKG_NAME}.deb http://downloads.slimdevices.com/LogitechMediaS
 WORKDIR /tmp
 
 #Clone Git Repos
-RUN git clone --depth=1 https://github.com/njh/perl-net-sdp.git perl-net-sdp \
-  && git clone --depth=1 https://github.com/StuartUSA/shairport_plugin.git shairport_plugin
+#RUN git clone --depth=1 https://github.com/njh/perl-net-sdp.git perl-net-sdp \
+ # && git clone --depth=1 https://github.com/StuartUSA/shairport_plugin.git shairport_plugin
 
 WORKDIR /tmp/perl-net-sdp
 
 #Build Perl Net::SDP
-RUN perl ./Build.PL \
-  && ./Build \
-  && ./Build install
+#RUN perl ./Build.PL \
+ # && ./Build \
+ # && ./Build install
 
-WORKDIR /tmp/shairport_plugin/shairport_helper/src
+#WORKDIR /tmp/shairport_plugin/shairport_helper/src
 
 #Build and install Shairport Helper
-RUN make \
-  && mv ./shairport_helper /usr/local/bin  
+#RUN make \
+ # && mv ./shairport_helper /usr/local/bin  
 
 RUN chown -R nobody:users /usr/share/squeezeboxserver/
 
